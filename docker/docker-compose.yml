@@ -1,1 +1,25 @@
 
+version: "3.9"
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: practice_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../mysql/init:/docker-entrypoint-initdb.d
+
+  oracle:
+    image: gvenzl/oracle-xe:21
+    container_name: oracle-db
+    restart: always
+    environment:
+      ORACLE_PASSWORD: oracle
+    ports:
+      - "1521:1521"
